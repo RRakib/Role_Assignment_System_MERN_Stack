@@ -1,13 +1,12 @@
 // Required File
 const express = require("express")
-const User = require("../Model/userModel")
 
 // Route
 const route = express.Router()
 
 // Authenticate
 let authenticate = ((req, res, next) => {
-    if(req.query.type != "Admin"){
+    if(req.query.type != "Programmer"){
         res.json({"warning" : "You are not authorized. Please ask admin to assign you a role"})
     }
     else{
@@ -17,11 +16,8 @@ let authenticate = ((req, res, next) => {
 
 // Get To Design
 route.get("/" , authenticate, (req, res) => {
-    User.find({type : null})
-        .then(resData =>{
-                res.json({"welcome" : "Welcome Admin" , "emails" : resData})
-        })
-        .catch(err => console.log("Error!" + err ) )
+    console.log(req.query);
+    res.json({"welcome" : "Welcome Mr.Programmer"})
 })
 
 // Exports

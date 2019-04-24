@@ -8,7 +8,8 @@ class Login extends Component {
             email : "",
             password : "",
             authenticate : "",
-            welcome : ""
+            welcome : "",
+            emails : ""
         }
     }
     handleChange = (e) => {
@@ -25,7 +26,17 @@ class Login extends Component {
         }
         console.log(this.state)
         axios.post("/user/login", data)
-            .then(res => {if(res.data.warning){this.setState({authenticate : res.data.warning})} else{this.setState({welcome : res.data.welcome})}})
+            .then(res => {
+                if(res.data.warning){
+                    this.setState({authenticate : res.data.warning})
+                } else{
+                    this.setState({welcome : res.data.welcome})
+                    if(res.data.emails.length > 0){
+                        this.setState({
+                            emails : res.data.emails
+                        })
+                    }
+                }})
             .catch(err => console.log("ERROR! " + err))
         
         this.setState({
@@ -38,6 +49,7 @@ class Login extends Component {
 
     
   render() {
+      console.log(this.state.emails)
     return (
       <div>
         <form onSubmit= {this.handleSubmit}>
@@ -60,6 +72,8 @@ class Login extends Component {
         <br />
         <h2 style={{color : 'red'}}> {this.state.authenticate}</h2>
         <h2 style={{color : 'green'}}> {this.state.welcome}</h2>
+
+            {this.state.emails.length > 0 ? (<p>{this.state.emails.map(items => {return items.email})}</p>) : null}
       </div>
     )
   }

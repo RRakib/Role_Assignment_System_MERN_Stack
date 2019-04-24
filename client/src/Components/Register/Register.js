@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import axios from "axios"
 
-class Login extends Component {
+class Register extends Component {
     constructor(props){
         super(props);
         this.state = {
+            name : "",
             email : "",
             password : "",
-            authenticate : "",
-            welcome : ""
+            congrats : "",
         }
     }
     handleChange = (e) => {
@@ -21,18 +21,18 @@ class Login extends Component {
         e.preventDefault();
         const data = {
             "email" : this.state.email,
-            "password" : this.state.password
+            "password" : this.state.password,
+            "name" : this.state.name
         }
         console.log(this.state)
-        axios.post("/user/login", data)
-            .then(res => {if(res.data.warning){this.setState({authenticate : res.data.warning})} else{this.setState({welcome : res.data.welcome})}})
+        axios.post("/user", data)
+            .then(res => {if(res){this.setState({congrats : "Congratulation! You are registered"})}})
             .catch(err => console.log("ERROR! " + err))
         
         this.setState({
             email : '',
             password : '',
-            authenticate : "",
-            welcome : ""
+            name : ""
         })
     }
 
@@ -41,6 +41,13 @@ class Login extends Component {
     return (
       <div>
         <form onSubmit= {this.handleSubmit}>
+            <input 
+                type="name"
+                name = "name"
+                value = {this.state.name}
+                onChange = {this.handleChange}
+                placeholder = "Please Enter Your Name"
+            />  
             <input
                 type="text"
                 name = "email"
@@ -55,14 +62,13 @@ class Login extends Component {
                 onChange = {this.handleChange}
                 placeholder = "Please Enter Your Password"
             />
-            <button>Login</button>
+            <button>Register</button>
         </form>
         <br />
-        <h2 style={{color : 'red'}}> {this.state.authenticate}</h2>
-        <h2 style={{color : 'green'}}> {this.state.welcome}</h2>
+        <h1 style={{color: "#333"}}>{this.state.congrats}</h1>
       </div>
     )
   }
 }
 
-export default Login
+export default Register

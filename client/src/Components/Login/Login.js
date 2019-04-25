@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
 import axios from "axios"
+import Admin from "../Admin/Admin"
+import React, { Component } from 'react'
 
 class Login extends Component {
     constructor(props){
@@ -9,7 +10,9 @@ class Login extends Component {
             password : "",
             authenticate : "",
             welcome : "",
-            emails : ""
+            emails : "",
+            admin : false,
+            clicked : false
         }
     }
     handleChange = (e) => {
@@ -24,7 +27,9 @@ class Login extends Component {
             "email" : this.state.email,
             "password" : this.state.password
         }
-        console.log(this.state)
+        this.setState({
+            admin: false
+        })
         axios.post("/user/login", data)
             .then(res => {
                 if(res.data.warning){
@@ -33,7 +38,9 @@ class Login extends Component {
                     this.setState({welcome : res.data.welcome})
                     if(res.data.emails.length > 0){
                         this.setState({
-                            emails : res.data.emails
+                            emails : res.data.emails,
+                            admin : res.data.admin,
+                            clicked : false,
                         })
                     }
                 }})
@@ -49,7 +56,7 @@ class Login extends Component {
 
     
   render() {
-      console.log(this.state.emails)
+      console.log(this.state.clicked, this.state.admin)
     return (
       <div>
         <form onSubmit= {this.handleSubmit}>
@@ -73,7 +80,7 @@ class Login extends Component {
         <h2 style={{color : 'red'}}> {this.state.authenticate}</h2>
         <h2 style={{color : 'green'}}> {this.state.welcome}</h2>
 
-            {this.state.emails.length > 0 ? (<p>{this.state.emails.map(items => {return items.email})}</p>) : null}
+        {this.state.admin || this.state.clicked? (<Admin emails = {this.state.emails} admin = {this.state.clicked}/>) : null}
       </div>
     )
   }

@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const userRoute = require("./Controller/userController")
 const adminRoute = require("./Controller/adminController")
 const designRoute = require("./Controller/designController")
+const updateRoute = require("./Controller/updateController")
 const programmerRoute = require("./Controller/programmerController")
 
 // Connect To MongoDB Atlas
@@ -19,6 +20,7 @@ app.use(express.json())
 app.use("/user" , userRoute)
 app.use("/admin" , adminRoute)
 app.use("/design" , designRoute)
+app.use("/update" , updateRoute)
 app.use("/program" , programmerRoute)
 
 // Port

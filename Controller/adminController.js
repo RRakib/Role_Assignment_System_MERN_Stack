@@ -19,7 +19,7 @@ let authenticate = ((req, res, next) => {
 route.get("/" , authenticate, (req, res) => {
     User.find({type : null})
         .then(resData =>{
-                res.json({"welcome" : "Welcome Admin" , "emails" : resData})
+                res.json({"welcome" : "Welcome Admin" , "emails" : resData , "admin" : true})
         })
         .catch(err => console.log("Error!" + err ) )
 })

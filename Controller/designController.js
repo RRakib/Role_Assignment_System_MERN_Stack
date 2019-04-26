@@ -8,6 +8,7 @@ const route = express.Router()
 let authenticate = ((req, res, next) => {
     if(req.query.type != "Designer"){
         res.json({"warning" : "You are not authorized. Please ask admin to assign you a role"})
+        res.redirect("/login")
     }
     else{
         next()

@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
 import axios from "axios"
+import React, { Component } from 'react'
+import Background from "../../Image/background.webp"
 
 class Register extends Component {
     constructor(props){
@@ -39,8 +40,12 @@ class Register extends Component {
     
   render() {
     return (
-      <div>
+      <div className="login">
+        {/* Background */}
+        <div className="backgroundShadow"></div>
+        <img src={Background} alt="Login background"/>
         <form onSubmit= {this.handleSubmit}>
+            <h1>Register</h1>
             <input 
                 type="name"
                 name = "name"
@@ -48,6 +53,7 @@ class Register extends Component {
                 onChange = {this.handleChange}
                 placeholder = "Please Enter Your Name"
             />  
+            <br />
             <input
                 type="text"
                 name = "email"
@@ -55,6 +61,7 @@ class Register extends Component {
                 onChange = {this.handleChange}
                 placeholder = "Please Enter Your Email"
             />
+            <br />
             <input 
                 type="password"
                 name = "password"
@@ -62,10 +69,11 @@ class Register extends Component {
                 onChange = {this.handleChange}
                 placeholder = "Please Enter Your Password"
             />
+            <br />
             <button>Register</button>
         </form>
         <br />
-        <h1 style={{color: "#333"}}>{this.state.congrats}</h1>
+        <h1 style={{color: "lightgreen"}}>{this.state.congrats}</h1>
       </div>
     )
   }

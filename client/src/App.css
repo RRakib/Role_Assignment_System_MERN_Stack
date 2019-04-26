@@ -1,0 +1,50 @@
+.App{
+    position: relative;
+    overflow: hidden;
+}
+
+.App .header{
+    width: 100%;
+    height: 76px;
+    color: #FFFFFF;
+    background: #da2900;
+}
+.App .header .headerContainer{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 50% 50%;
+}
+.App .header .headerContainer .logo {
+    position: relative;
+    text-align: left;
+    padding-left: 116.5px;
+}
+.App .header .headerContainer .logo img{
+    width: 152.8px;
+    padding-top: 3.5px; 
+}
+.App .header .headerContainer .logo small{
+    position: absolute;
+    top: 20px;
+    right: 42px;
+    font-weight: 300;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: .4px;
+}
+.App .header .headerContainer .nav{
+    padding-top: 10px;
+}
+.App .header .headerContainer .nav a{
+    transition: .3s;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0 40px;
+    text-decoration: none;
+}
+.App .header .headerContainer .nav a:hover{
+    color: #333;
+}

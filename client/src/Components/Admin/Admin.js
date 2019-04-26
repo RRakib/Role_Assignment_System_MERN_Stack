@@ -23,6 +23,9 @@ class Admin extends Component {
             .then(res => {if(res){this.setState({success: "Successfully Assigned Role"})}})
             .catch(err => {console.log("Error " + err)})
     }
+    handleSubmit2 = () => {
+        window.location.reload();
+    }
 
 
   render() {
@@ -35,21 +38,24 @@ class Admin extends Component {
         })
     ) : null
     return (
-      <div>
+      <div className="login" style={{padding : 0}}>
         <form onSubmit={this.handleSubmit}>
             <select name="emails" onChange={this.handleChange} value={this.state.emails}>
                 <option>Select An Email</option>
                 {emails}
             </select>
+            <br />
             <select name="type" onChange={this.handleChange} value={this.state.type}>
                 <option>Select An Email</option>
                 <option value = "Designer">Designer</option>
                 <option value = "Programmer">Programmer</option>
             </select>
+            <br />
             <button>Assign</button>
         </form>
         <br />
-        <h2 style={{color : "green"}}>{this.state.success}</h2>
+        <h2 style={{color : "lightgreen"}}>{this.state.success}</h2>
+        {this.props.welcome && (<button onClick={this.handleSubmit2}>LogOut</button>)}
       </div>
     )
   }

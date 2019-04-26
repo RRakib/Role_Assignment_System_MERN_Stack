@@ -1,6 +1,8 @@
+import "./Login.css"
 import axios from "axios"
 import Admin from "../Admin/Admin"
 import React, { Component } from 'react'
+import Background from "../../Image/background.webp"
 
 class Login extends Component {
     constructor(props){
@@ -28,7 +30,8 @@ class Login extends Component {
             "password" : this.state.password
         }
         this.setState({
-            admin: false
+            admin: false,
+            clicked : true,
         })
         axios.post("/user/login", data)
             .then(res => {
@@ -40,7 +43,6 @@ class Login extends Component {
                         this.setState({
                             emails : res.data.emails,
                             admin : res.data.admin,
-                            clicked : false,
                         })
                     }
                 }})
@@ -53,13 +55,22 @@ class Login extends Component {
             welcome : ""
         })
     }
+    handleSubmit2 = () => {
+        window.location.reload();
+    }
 
     
   render() {
-      console.log(this.state.clicked, this.state.admin)
+      console.log(this.state.clicked)
     return (
-      <div>
-        <form onSubmit= {this.handleSubmit}>
+      <div className="login">
+        {/* Background */}
+        <div className="backgroundShadow"></div>
+        <img src={Background} alt="Login background"/>
+
+        {/* Form */}
+        <form onSubmit= {this.handleSubmit} style={{display : this.state.clicked? "none" : "block"}}>
+            <h1>Login</h1>
             <input
                 type="text"
                 name = "email"
@@ -67,6 +78,7 @@ class Login extends Component {
                 onChange = {this.handleChange}
                 placeholder = "Please Enter Your Email"
             />
+            <br />
             <input 
                 type="password"
                 name = "password"
@@ -74,13 +86,15 @@ class Login extends Component {
                 onChange = {this.handleChange}
                 placeholder = "Please Enter Your Password"
             />
+            <br />
             <button>Login</button>
         </form>
         <br />
-        <h2 style={{color : 'red'}}> {this.state.authenticate}</h2>
-        <h2 style={{color : 'green'}}> {this.state.welcome}</h2>
+        <h1 style={{color : '#ff5722'}}> {this.state.authenticate}</h1>
+        <h1 style={{color : 'lightgreen'}}> {this.state.welcome}</h1>
+        {this.state.admin? (<Admin emails = {this.state.emails} admin = {this.state.clicked} welcome={this.state.welcome} />) : null}
+        {this.state.welcome && (<button onClick={this.handleSubmit2}>LogOut</button>)}
 
-        {this.state.admin || this.state.clicked? (<Admin emails = {this.state.emails} admin = {this.state.clicked}/>) : null}
       </div>
     )
   }

@@ -1,0 +1,69 @@
+.login{
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    color: #ddd;
+}
+.login img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+.login .backgroundShadow{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.8);
+    z-index: -1;
+}
+.login input{
+    width: 20%;
+    border:none;
+    color : #fff;
+    outline: none;
+    margin: 15px 10px;
+    padding: 5px 10px ;
+    background: transparent;
+    border-bottom: 2px solid #da2900;
+}
+.login select{
+    width: 22%;
+    border:none;
+    color : #fff;
+    outline: none;
+    margin: 15px 10px;
+    padding: 5px 10px ;
+    background: transparent;
+    border-bottom: 2px solid #da2900;
+}
+.login select option{
+    color: #333;    
+}
+::placeholder{
+    color: #aaa;
+    font-size: 17px;
+}
+.login button{
+    border: none;
+    outline: none;
+    color: #eee;
+    width:21.8%;
+    margin: 15px 0;
+    padding: 2px 0;
+    font-size: 19px;
+    transition: .3s;
+    background: #b36b5b;
+    font-family: Montserrat;
+    border: 2px solid #da2900;
+}
+
+.login button:hover{
+    background: #da2900;
+    border: 2px solid #b36b5b;
+}

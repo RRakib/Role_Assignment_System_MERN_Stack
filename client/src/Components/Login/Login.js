@@ -14,7 +14,7 @@ class Login extends Component {
             welcome : "",
             emails : "",
             admin : false,
-            clicked : false
+            clicked : false,
         }
     }
     handleChange = (e) => {

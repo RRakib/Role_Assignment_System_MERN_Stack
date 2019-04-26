@@ -50,7 +50,7 @@ route.post("/login" , (req, res) => {
                 }
             }
         )
-        .catch(err => console.log("Error! " + err))
+        .catch(err => res.json({warning : "You are not registered"}))
 }) 
 
 // Exports
